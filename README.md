@@ -12,15 +12,13 @@
   <li><a href="#tecnologias-utilizadas">Tecnologias utilizadas</a></li>
   <li><a href="#instalação-e-utilização">Instalação e utilização</a></li>
   <li><a href="#vite-js">ViteJS</a></li>
-  <li><a href="#margin-top-negativo">Margin top negativo</a></li>
-  <li><a href="#corrigindo-box-sizing">Corrigindo box sizing</a></li>
   
 </ol>
 
 ## Visão geral do projeto
 
 <div align="center">
-  <img src="github/images/dashboard.png" alt="project preview" width="1180" height="682">  
+  <img src="github/images/dashboard.png" alt="project preview" width="1180" height="520">  
 </div>
 
 ## Tecnologias utilizadas
@@ -73,6 +71,36 @@ contanto com seu próprio blunder, mais veloz e prático. O Vite suporta Typescr
 }
 ```
 
+# Tag Time
+
+Utilizando tag time da maneira correta
+
+```html
+<time title="11 de maio às 08:13h" dateTime='2022-05-08 08:13:30'>Publicado há 1h</time>
+```
+
+# Mudando Outline Color
+
+```css
+:focus {
+  outline: transparent;
+  box-shadow: 0 0 0 2px var(--green-500);
+}
+```
+
+## Ocultar elemento mantendo acessibilidade
+
+```css
+.commentForm footer { /*ocultado botão, mantendo acessibildiade*/
+  visibility: hidden;
+  max-height: 0;
+}
+
+.commentForm:focus-within footer { /*quando algo dentro do commentForm estiver focado, mostrar botão*/
+  visibility: visible;
+  max-height: none;
+}
+```
 
 <br />
 

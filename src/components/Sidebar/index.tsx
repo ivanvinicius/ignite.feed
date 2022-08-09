@@ -16,7 +16,7 @@ export function Sidebar() {
           alt="Image de perfil do usuário" 
           className={styles.avatar}  
         />
-        <strong>Ivan Vinicius</strong>
+        <strong>Ivan Vinicius Boneti</strong>
         <span>ReactJS Developer</span>
       </div>
 

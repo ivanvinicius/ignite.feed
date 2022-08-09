@@ -30,12 +30,14 @@
   margin-top: 1rem;
   color: var(--gray-100);
   line-height: 1.6;
+  text-align: center;
 }
 
 .profile span {
   font-size: 0.875rem;
   color: var(--gray-400);
   line-height: 1.6;
+  text-align: center;
 }
 
 .sidebar footer {
