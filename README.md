@@ -114,6 +114,50 @@ button {
 }
 ```
 
+## Aplicando responsividade
+
+```css
+button {
+  @media (max-width: 768px) {
+  html {
+    font-size: 87.5%;
+  }
+  
+  .wrapper {
+    grid-template-columns: 1fr; 
+  }
+}
+
+/*
+  16 -> 100
+  14 -> fontSize
+
+  fontSize = 14 * 100 / 16
+  fontSize = 87.5%
+*/
+}
+```
+
+
+## Formatando data e hora com date-fns
+
+```js
+  import { format } from 'date-fns'
+  import ptBR from 'date-fns/locale/pt-BR'
+ 
+  //03 de maio às 21:03h
+  const longPublishedAt = format(publishedAt, "dd 'de' LLLL 'às' HH:mm'h'", { 
+    locale: ptBR
+  })
+
+  //há cerca de 8 horas / dias / minutos
+  const publishedAtDistaceFromNow = formatDistanceToNow(publishedAt, {
+    locale: ptBR,
+    addSuffix: true
+  })
+
+```
+
 <br />
 
 <h4 align="center"><a href="#top">Voltar ao Início</a></h4>

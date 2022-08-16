@@ -1,32 +1,60 @@
+import { format, formatDistanceToNow } from 'date-fns'
+import ptBR from 'date-fns/locale/pt-BR'
+
 import { Avatar } from '../Avatar'
 import { Comment } from '../Comment'
 
-
 import styles from './styles.module.css'
 
-const diegoPicture = 'https://github.com/diego3g.png'
-const luizPicture = 'https://github.com/luizbatanero.png'
-const josephPicture = 'https://github.com/josepholiveira.png'
+interface AuthorData {
+  avatarUrl: string
+  name: string
+  role: string
+}
 
-export function Post() {
+interface ContentData {
+  type: string
+  content: string
+}
+
+interface Props {
+  author: AuthorData
+  content: ContentData[]
+  publishedAt: Date
+}
+
+export function Post({author, content, publishedAt}: Props) {
+  const longPublishedAt = format(publishedAt, "dd 'de' LLLL 'às' HH:mm'h'", {
+    locale: ptBR
+  })
+  const publishedAtDistaceFromNow = formatDistanceToNow(publishedAt, {
+    locale: ptBR,
+    addSuffix: true
+  })
+
+  
   return (
     <article className={styles.post}>
       <header className={styles.header} >
         <div className={styles.author}>
-          <Avatar src={diegoPicture} />
+          <Avatar src={author.avatarUrl} />
           <div className={styles.authorInfo}>
-            <strong>Diego Schell Fernandes</strong>
-            <span>Web Developer</span>
+            <strong>{author.name}</strong>
+            <span>{author.role}</span>
           </div>
         </div>
-        <time title="11 de maio às 08:13h" dateTime='2022-05-08 08:13:30'>Publicado há 1h</time>
+        <time title={longPublishedAt} dateTime={publishedAt.toISOString()}>{publishedAtDistaceFromNow}</time>
       </header>
 
       <div className={styles.content}>
-        <p>Fala galeraa 👋</p>
-        <p>Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀</p>
-        <p>👉{' '}<a href="#">jane.design/doctorcare</a></p>
-        <p><a href="#">#novoprojeto #nlw #rocketseat</a></p>
+       {content.map(line => {
+        if(line.type === 'paragraph') {
+          return <p>{line.content}</p>
+        }
+        else if(line.type === 'link') {
+          return <p><a href="#">{line.content}</a></p>
+        }
+       })}
       </div>
 
       <form  className={styles.commentForm}>
