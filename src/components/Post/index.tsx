@@ -1,5 +1,6 @@
-import styles from './styles.module.css'
+import {Comment} from '../Comment'
 
+import styles from './styles.module.css'
 
 const diegoPicture = 'https://github.com/diego3g.png'
 const luizPicture = 'https://github.com/luizbatanero.png'
@@ -37,6 +38,12 @@ export function Post() {
           <button type="submit">Publicar</button>
         </footer>
       </form>
+
+      <div className={styles.commentList}>
+        <Comment />
+        <Comment />
+        <Comment />
+      </div>
     </article>
   )
 }

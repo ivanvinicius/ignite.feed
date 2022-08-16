@@ -71,7 +71,7 @@ contanto com seu próprio blunder, mais veloz e prático. O Vite suporta Typescr
 }
 ```
 
-# Tag Time
+## Tag Time
 
 Utilizando tag time da maneira correta
 
@@ -79,10 +79,11 @@ Utilizando tag time da maneira correta
 <time title="11 de maio às 08:13h" dateTime='2022-05-08 08:13:30'>Publicado há 1h</time>
 ```
 
-# Mudando Outline Color
+## Mudando Outline Color
 
 ```css
 :focus {
+  /*global.css*/
   outline: transparent;
   box-shadow: 0 0 0 2px var(--green-500);
 }
@@ -99,6 +100,17 @@ Utilizando tag time da maneira correta
 .commentForm:focus-within footer { /*quando algo dentro do commentForm estiver focado, mostrar botão*/
   visibility: visible;
   max-height: none;
+}
+```
+
+## Segredo no button
+
+Por padrão os botões seguem a altura do font-size ou line-height, dessa forma, muitas vezes o espaço interno em um dos
+lados do botão pode ficar maior. Para corrigir esse problema, basta aplicar a solução abaixo:
+
+```css
+button {
+  line-height: 0; /*ou font-size:0*/
 }
 ```
 
