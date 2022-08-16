@@ -1,4 +1,6 @@
-import {Comment} from '../Comment'
+import { Avatar } from '../Avatar'
+import { Comment } from '../Comment'
+
 
 import styles from './styles.module.css'
 
@@ -11,11 +13,7 @@ export function Post() {
     <article className={styles.post}>
       <header className={styles.header} >
         <div className={styles.author}>
-          <img 
-            src={diegoPicture} 
-            alt="Foto de perfil do usuário" 
-            className={styles.avatar}
-          />
+          <Avatar src={diegoPicture} />
           <div className={styles.authorInfo}>
             <strong>Diego Schell Fernandes</strong>
             <span>Web Developer</span>
