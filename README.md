@@ -138,7 +138,6 @@ button {
 }
 ```
 
-
 ## Formatando data e hora com date-fns
 
 ```js
@@ -155,8 +154,46 @@ button {
     locale: ptBR,
     addSuffix: true
   })
-
 ```
+
+## Tipando o event.onChange e event.onInvalid
+
+```js
+<textarea 
+  placeholder='Deixar comentário'
+  value={textAreaValue}
+  onChange={handleTextAreaValueChange}
+  required
+  onInvalid={handleInvalidTextArea}
+/>
+
+
+function handleTextAreaValueChange(event: ChangeEvent<HTMLTextAreaElement>) {
+  event.target.setCustomValidity('') //limpar a validação quando algo for digitado
+  setTextAreaValue(event.target.value)
+}
+
+function handleInvalidTextArea(event: ChangeEvent<HTMLTextAreaElement>) {
+  event.target.setCustomValidity('Este campo precisa ser preenchido!')
+}
+```
+
+
+## Estilizando button:disabled
+
+```css
+/*Aplicar hover somente quando button não estiver disabled*/
+.commentaryForm button[type=submit]:not(:disabled):hover {
+  background-color: var(--green-300);
+}
+
+.commentaryForm button[type=submit]:disabled {
+  background-color: var(--gray-600);
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+```
+
 
 <br />
 

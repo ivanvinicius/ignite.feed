@@ -1,4 +1,4 @@
-import { useState, FormEvent } from 'react'
+import { useState, FormEvent, ChangeEvent } from 'react'
 import { format, formatDistanceToNow } from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
 
@@ -31,11 +31,13 @@ export function Post({author, content, publishedAt}: Props) {
   const longPublishedAt = format(publishedAt, "dd 'de' LLLL 'às' HH:mm'h'", {
     locale: ptBR
   })
-
+  
   const publishedAtDistaceFromNow = formatDistanceToNow(publishedAt, {
     locale: ptBR,
     addSuffix: true
   })
+  
+  const isTextAreaEmpty = textAreaValue.length === 0
 
   function handleCreateNewCommentary(event: FormEvent) {
     event.preventDefault()
@@ -49,6 +51,15 @@ export function Post({author, content, publishedAt}: Props) {
     }) 
 
     setCommentaries(distinctCommentaries)
+  }
+
+  function handleTextAreaValueChange(event: ChangeEvent<HTMLTextAreaElement>) {
+    event.target.setCustomValidity('')
+    setTextAreaValue(event.target.value)
+  }
+
+  function handleInvalidTextArea(event: ChangeEvent<HTMLTextAreaElement>) {
+    event.target.setCustomValidity('Este campo precisa ser preenchido!')
   }
 
   return (
@@ -79,11 +90,13 @@ export function Post({author, content, publishedAt}: Props) {
         <textarea 
           placeholder='Deixar comentário'
           value={textAreaValue}
-          onChange={e => setTextAreaValue(e.target.value)}
+          onChange={handleTextAreaValueChange}
+          required
+          onInvalid={handleInvalidTextArea}
         />
 
         <footer>
-          <button type="submit">Publicar</button>
+          <button type="submit" disabled={isTextAreaEmpty}>Publicar</button>
         </footer>
       </form>
 
