@@ -1,8 +1,9 @@
+import { useState, FormEvent } from 'react'
 import { format, formatDistanceToNow } from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
 
 import { Avatar } from '../Avatar'
-import { Comment } from '../Comment'
+import { Commentary } from '../Commentary'
 
 import styles from './styles.module.css'
 
@@ -24,6 +25,9 @@ interface Props {
 }
 
 export function Post({author, content, publishedAt}: Props) {
+  const [commentaries, setCommentaries] = useState(['Caraca, muito massa!'])
+  const [textAreaValue, setTextAreaValue] = useState('')
+
   const longPublishedAt = format(publishedAt, "dd 'de' LLLL 'às' HH:mm'h'", {
     locale: ptBR
   })
@@ -32,6 +36,12 @@ export function Post({author, content, publishedAt}: Props) {
     addSuffix: true
   })
 
+
+  function handleCreateNewCommentary(event: FormEvent) {
+    event.preventDefault()
+    setCommentaries(oldState => [...oldState, textAreaValue])
+    setTextAreaValue('')
+  }
   
   return (
     <article className={styles.post}>
@@ -43,32 +53,36 @@ export function Post({author, content, publishedAt}: Props) {
             <span>{author.role}</span>
           </div>
         </div>
-        <time title={longPublishedAt} dateTime={publishedAt.toISOString()}>{publishedAtDistaceFromNow}</time>
+        <time title={longPublishedAt} dateTime={publishedAt.toISOString()}>
+          {publishedAtDistaceFromNow}
+        </time>
       </header>
 
       <div className={styles.content}>
-       {content.map(line => {
-        if(line.type === 'paragraph') {
-          return <p>{line.content}</p>
-        }
-        else if(line.type === 'link') {
-          return <p><a href="#">{line.content}</a></p>
-        }
-       })}
+        {content.map(({type, content}) => {
+            if(type === 'paragraph') return <p key={content}>{content}</p>
+            if(type === 'link') return <p key={content}><a href="#">{content}</a></p>
+          }
+        )}
       </div>
 
-      <form  className={styles.commentForm}>
+      <form onSubmit={handleCreateNewCommentary} className={styles.commentaryForm}>
         <strong>Deixe seu feedback</strong>
-        <textarea placeholder='Deixar comentário'/>
+        <textarea 
+          placeholder='Deixar comentário'
+          value={textAreaValue}
+          onChange={e => setTextAreaValue(e.target.value)}
+        />
+
         <footer>
           <button type="submit">Publicar</button>
         </footer>
       </form>
 
-      <div className={styles.commentList}>
-        <Comment />
-        <Comment />
-        <Comment />
+      <div className={styles.commentaryList}>
+        {commentaries.map(commentary => (
+          <Commentary key={commentary} commentary={commentary} />
+        ))}
       </div>
     </article>
   )

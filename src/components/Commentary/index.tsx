@@ -1,17 +1,20 @@
 import { ThumbsUp, Trash } from 'phosphor-react'
+
 import { Avatar } from '../Avatar'
 
 import styles from './styles.module.css'
 
-const luizPicture = 'https://github.com/luizbatanero.png'
+interface Props {
+  commentary: string
+}
 
-export function Comment () {
+export function Commentary ({ commentary }: Props) {
   return (
-    <section className={styles.comment}>
-      <Avatar src={luizPicture} hasBorder={false}/>
+    <section className={styles.commentary}>
+      <Avatar src={'https://github.com/luizbatanero.png'} hasBorder={false}/>
 
-      <div className={styles.commentBox}>
-        <div className={styles.commentContent}>
+      <div className={styles.commentaryBox}>
+        <div className={styles.commentaryContent}>
           <header>
             <div className={styles.authorAndTime}>
               <strong>Luiz Batanero</strong>
@@ -23,7 +26,7 @@ export function Comment () {
             </button>
           </header>
 
-          <p>Muito bom Diego, parabéns!! 👏👏</p>
+          <p>{commentary}</p>
         </div>
 
         <footer>

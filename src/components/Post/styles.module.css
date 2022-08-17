@@ -59,19 +59,19 @@
   color: var(--green-300)
 }
 
-.commentForm {
+.commentaryForm {
   width: 100%;
   margin-top: 1.5rem;
   padding-top: 1.5rem;
   border-top: 1px solid var(--gray-600);
 }
 
-.commentForm > strong {
+.commentaryForm > strong {
   line-height: 1.6;
   color: var(--gray-100);
 }
 
-.commentForm textarea {
+.commentaryForm textarea {
   width: 100%;
   background-color: var(--gray-900);
   border: 0;
@@ -84,7 +84,7 @@
   margin-top: 1rem;
 }
 
-.commentForm button[type=submit] {
+.commentaryForm button[type=submit] {
   display: flex;
   margin-left: auto;
   margin-top: 1rem;
@@ -98,7 +98,7 @@
   transition: background-color .2s;
 }
 
-.commentForm button[type=submit]:hover {
+.commentaryForm button[type=submit]:hover {
   background-color: var(--green-300);
 }
 
