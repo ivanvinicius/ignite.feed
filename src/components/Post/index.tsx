@@ -25,17 +25,17 @@ interface Props {
 }
 
 export function Post({author, content, publishedAt}: Props) {
-  const [commentaries, setCommentaries] = useState(['Caraca, muito massa!'])
+  const [commentaries, setCommentaries] = useState(['Post muito bacana!'])
   const [textAreaValue, setTextAreaValue] = useState('')
 
   const longPublishedAt = format(publishedAt, "dd 'de' LLLL 'às' HH:mm'h'", {
     locale: ptBR
   })
+
   const publishedAtDistaceFromNow = formatDistanceToNow(publishedAt, {
     locale: ptBR,
     addSuffix: true
   })
-
 
   function handleCreateNewCommentary(event: FormEvent) {
     event.preventDefault()
@@ -43,6 +43,14 @@ export function Post({author, content, publishedAt}: Props) {
     setTextAreaValue('')
   }
   
+  function deleteCommentary(commentaryToDelete: string) {    
+    const distinctCommentaries = commentaries.filter(commentary => {
+      return commentary !== commentaryToDelete
+    }) 
+
+    setCommentaries(distinctCommentaries)
+  }
+
   return (
     <article className={styles.post}>
       <header className={styles.header} >
@@ -81,7 +89,11 @@ export function Post({author, content, publishedAt}: Props) {
 
       <div className={styles.commentaryList}>
         {commentaries.map(commentary => (
-          <Commentary key={commentary} commentary={commentary} />
+          <Commentary 
+            key={commentary} 
+            commentary={commentary} 
+            onDeleteCommentary={deleteCommentary}
+          />
         ))}
       </div>
     </article>

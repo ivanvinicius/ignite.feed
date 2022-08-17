@@ -6,9 +6,15 @@ import styles from './styles.module.css'
 
 interface Props {
   commentary: string
+  onDeleteCommentary(commentary: string): void
 }
 
-export function Commentary ({ commentary }: Props) {
+export function Commentary ({ commentary, onDeleteCommentary }: Props) {
+  
+  function handleDeleteCommentary() {
+    onDeleteCommentary(commentary)
+  }
+
   return (
     <section className={styles.commentary}>
       <Avatar src={'https://github.com/luizbatanero.png'} hasBorder={false}/>
@@ -21,7 +27,7 @@ export function Commentary ({ commentary }: Props) {
               <time title="11 de maio às 08:13h" dateTime='2022-05-08 08:13:30'>Cerca de 1h atrás</time>
             </div>
 
-            <button title="Deletar comentário">
+            <button title="Deletar comentário" onClick={handleDeleteCommentary}>
               <Trash size={24} />
             </button>
           </header>

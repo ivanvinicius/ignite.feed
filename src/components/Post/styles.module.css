@@ -102,16 +102,16 @@
   background-color: var(--green-300);
 }
 
-.commentForm footer { /*ocultado botão, mantendo acessibildiade*/
+.commentaryForm footer { /*ocultado botão, mantendo acessibildiade*/
   visibility: hidden;
   max-height: 0;
 }
 
-.commentForm:focus-within footer { /*quando algo dentro do commentForm estiver focado, mostrar botão*/
+.commentaryForm:focus-within footer { /*quando algo dentro do commentForm estiver focado, mostrar botão*/
   visibility: visible;
   max-height: none;
 }
 
-.commentList {
+.commentaryList {
   margin-top: 2rem;
 }
