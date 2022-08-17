@@ -1,16 +1,16 @@
+import { ImgHTMLAttributes } from 'react'
+
 import styles from './styles.module.css'
 
-interface Props {
-  src: string;
+interface Props extends ImgHTMLAttributes<HTMLImageElement> {
   hasBorder?: boolean
 }
 
-export function Avatar({src, hasBorder = true}: Props) {
+export function Avatar({ hasBorder = true, ...rest }: Props) {
   return (
     <img 
-      src={src} 
       className={hasBorder ? styles.avatarWithBorder : styles.avatar} 
-      alt="Image de perfil do usuário" 
+      {...rest}
     />
   )
 }

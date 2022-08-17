@@ -76,7 +76,7 @@
 }
 
 .commentaryBox footer button span::before {
-  content: "\2022";
+  content: "\2022"; /*código do símbolo ponto*/
   padding: 0 0.25rem;
 
 }

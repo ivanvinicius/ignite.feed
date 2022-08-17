@@ -108,12 +108,14 @@
   opacity: 0.7;
 }
 
-.commentaryForm footer { /*ocultado botão, mantendo acessibildiade*/
+.commentaryForm footer { 
+  /*ocultado botão, mantendo acessibildiade*/
   visibility: hidden;
   max-height: 0;
 }
 
-.commentaryForm:focus-within footer { /*quando algo dentro do commentForm estiver focado, mostrar botão*/
+.commentaryForm:focus-within footer {
+  /*quando algo dentro do commentForm estiver focado, mostrar botão*/
   visibility: visible;
   max-height: none;
 }

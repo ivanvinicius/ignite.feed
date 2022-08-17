@@ -1,10 +1,9 @@
-import { useState, FormEvent, ChangeEvent } from 'react'
+import { useState, FormEvent, ChangeEvent, InvalidEvent } from 'react'
 import { format, formatDistanceToNow } from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
 
-import { Avatar } from '../Avatar'
 import { Commentary } from '../Commentary'
-
+import { Avatar } from '../Avatar'
 import styles from './styles.module.css'
 
 interface AuthorData {
@@ -27,6 +26,7 @@ interface Props {
 export function Post({author, content, publishedAt}: Props) {
   const [commentaries, setCommentaries] = useState(['Post muito bacana!'])
   const [textAreaValue, setTextAreaValue] = useState('')
+  const isTextAreaEmpty = textAreaValue.length === 0
 
   const longPublishedAt = format(publishedAt, "dd 'de' LLLL 'às' HH:mm'h'", {
     locale: ptBR
@@ -37,11 +37,9 @@ export function Post({author, content, publishedAt}: Props) {
     addSuffix: true
   })
   
-  const isTextAreaEmpty = textAreaValue.length === 0
-
   function handleCreateNewCommentary(event: FormEvent) {
     event.preventDefault()
-    setCommentaries(oldState => [...oldState, textAreaValue])
+    setCommentaries(currentState => [...currentState, textAreaValue])
     setTextAreaValue('')
   }
   
@@ -58,7 +56,7 @@ export function Post({author, content, publishedAt}: Props) {
     setTextAreaValue(event.target.value)
   }
 
-  function handleInvalidTextArea(event: ChangeEvent<HTMLTextAreaElement>) {
+  function handleInvalidTextArea(event: InvalidEvent<HTMLTextAreaElement>) {
     event.target.setCustomValidity('Este campo precisa ser preenchido!')
   }
 
@@ -94,7 +92,6 @@ export function Post({author, content, publishedAt}: Props) {
           required
           onInvalid={handleInvalidTextArea}
         />
-
         <footer>
           <button type="submit" disabled={isTextAreaEmpty}>Publicar</button>
         </footer>

@@ -92,12 +92,14 @@ Utilizando tag time da maneira correta
 ## Ocultar elemento mantendo acessibilidade
 
 ```css
-.commentForm footer { /*ocultado botão, mantendo acessibildiade*/
+/*ocultado botão, mantendo acessibildiade*/
+.commentForm footer { 
   visibility: hidden;
   max-height: 0;
 }
 
-.commentForm:focus-within footer { /*quando algo dentro do commentForm estiver focado, mostrar botão*/
+/*quando algo dentro do commentForm estiver focado, mostrar botão*/
+.commentForm:focus-within footer { 
   visibility: visible;
   max-height: none;
 }
@@ -173,7 +175,7 @@ function handleTextAreaValueChange(event: ChangeEvent<HTMLTextAreaElement>) {
   setTextAreaValue(event.target.value)
 }
 
-function handleInvalidTextArea(event: ChangeEvent<HTMLTextAreaElement>) {
+function handleInvalidTextArea(event: InvalidEvent<HTMLTextAreaElement>) {
   event.target.setCustomValidity('Este campo precisa ser preenchido!')
 }
 ```
